@@ -1,0 +1,1116 @@
+<!DOCTYPE  html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href="index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body id = "body">
+    <button onclick="theme()" id = "th">enable dark mode</button>
+    <div id ="dark">
+       
+    <h1>Instructions</h1>
+    <ul>
+        <li>Firstly you need to enter the student strength please dont proceed without entering student strength after entering do not forget to press DONE button</li>
+        
+        <li>I have set maximium student strength to 75 but you can generate buttons more than 75 BUT BUTTONS BEYOND 75 WILL NOT WORK</li>
+        <li> am sure this will help you save your time while taking attendence</li>
+        <li>HAVE A NICE DAY </li>
+        <li><h2>AN ART BY VIJAY</h2></li>
+
+    </ul>
+    <h1>Enter how many students</h1>
+    </div>
+    <form>
+        <input type="text" placeholder="Enter todays date" id = "date">
+    
+        <input type="number" placeholder="enter here" id = "userInput"/>
+        <input type="email" placeholder="enter email" id = "userInput" required/>
+        <button onclick="convert()">done </button>
+        <div>
+        <button class="buttonfunction" onclick="done()" id = "gen" >generate list</button>
+        </div>
+    </form>
+   
+    <h1 id = "result" ></h1>
+    
+
+    <div id="button-container">
+
+    </div>
+    
+    <h1 class="dark">Absentees Rollno</h1>
+    <h1 id = "display" >
+    
+    </h3>
+    <!-- <button onclick="print()">print</button> -->
+    <button onclick="download()" id = "down">DOWNLOAD</button>
+    
+    
+    <script>
+        
+        var down = document.getElementById("down");
+         var b = document.getElementById("th");
+          b.style.backgroundColor = "black";
+            b.style.color = "white";
+            down.style.backgroundColor = "black";
+            down.style.color = "white";
+        var t=0;
+        function theme(){
+            t=t+1;
+            var element = document.getElementById("body");
+            var d = document.getElementById("dark");
+            var d2 = document.getElementById("result");
+            var disp = document.getElementById("display");
+           
+
+            if(t%2!=0){
+                element.style.backgroundColor = "black";
+                d.style.color = "white";
+                d2.style.color = "white";
+                disp.style.color = "white";
+                b.style.backgroundColor = "white";
+                b.style.color = "black";
+                b.innerHTML = "enable light mode";
+                down.style.backgroundColor = "white";
+            down.style.color = "black";
+
+
+                
+            }
+            else{
+                element.style.backgroundColor = "#f5f6fa";
+                d.style.color = "black";
+                d2.style.color = "black";
+                disp.style.color = "black";
+                b.style.backgroundColor = "black";
+                b.style.color = "white";
+                b.innerHTML = "enable dark mode";
+                down.style.backgroundColor = "black";
+            down.style.color = "white";
+
+            }
+        }
+        
+        var disp = document.getElementById("display");
+        var date = document.getElementById("date").value;
+        disp.innerHTML+=date;
+        
+        var bn = new Array(75);
+        for(var i=1;i<=75;i++){
+            bn[i] = 0;
+        }
+        function fun(){
+            var g  = 0;
+        }
+        function convert() {
+            // Get the user input from the input field
+            var userInput = document.getElementById("userInput").value;
+
+            // Try to convert the user input to a number using parseFloat
+            var number = parseFloat(userInput);
+            fun();
+            g = number;
+
+            // Check if the conversion was successful (not NaN)
+            
+            if (!isNaN(number)) {
+                // document.getElementById("result").textContent = "total number of students are "+g;
+                if(number>75){
+                    document.getElementById("result").textContent = "limit is 75 please select number under 75";
+
+                }
+                else{
+                    document.getElementById("result").textContent = "total number of students are "+g;
+                }
+            }
+            
+             else {
+                document.getElementById("result").textContent = "Invalid input. Please enter a valid number.";
+            }
+        }
+        fun();
+
+        function done(){
+        for (var i = 1; i <= g; i++) {
+            var button = document.createElement("button");
+            var buttonId = "b" + i;
+            var functionName = "bf" + i;
+            button.id = buttonId;
+            button.className = "buttonfunction";
+            button.innerHTML = i;
+            button.onclick = new Function(functionName + "();");
+            var buttonContainer = document.getElementById("button-container");
+            buttonContainer.appendChild(button);
+            if(i%4==0){
+                buttonContainer.appendChild(document.createElement('br'));
+            }
+           
+        }
+    }
+        function bf1() {
+        
+            bn[1]=bn[1]+1;
+
+            if(bn[1]%2!=0){
+                document.getElementById("b1").style.backgroundColor="red";
+                var  a=disp.innerHTML += '| 1 |';
+            
+                
+            }
+            else{
+                document.getElementById("b1").style.backgroundColor="green";
+                // t2 = t2.filter((item => item !== 1));
+                disp.innerHTML += '|  1 removed ||  ';            
+                
+                
+            }
+            
+        }
+        
+        
+     
+        
+        function bf2() {
+            
+            
+            
+            
+            bn[2]=bn[2]+1;
+
+            if(bn[2]%2!=0){
+                document.getElementById("b2").style.backgroundColor="red";
+                disp.innerHTML += '| 2 |';
+                
+                
+               
+                
+            }
+            else{
+                document.getElementById("b2").style.backgroundColor="green";
+                disp.innerHTML += '| 2 removed |';
+                
+
+                
+            }
+            
+        }
+        
+    
+        function bf3() {
+            bn[3]=bn[3]+1;
+
+            if(bn[3]%2!=0){
+                document.getElementById("b3").style.backgroundColor="red";
+                disp.innerHTML += '| 3 |';
+            }
+            else{
+                document.getElementById("b3").style.backgroundColor="green";
+                disp.innerHTML+= '| 3 removed |'
+            }
+        }
+        function bf4() {
+            bn[4]=bn[4]+1
+
+            if(bn[4]%2!=0){
+                document.getElementById("b4").style.backgroundColor="red";
+                disp.innerHTML += '| 4 |';
+            }
+            else{
+                document.getElementById("b4").style.backgroundColor="green";
+                disp.innerHTML+= '| 4 removed |';
+            }
+        }
+        function bf5() {
+            bn[5]=bn[5]+1
+
+            if(bn[5]%2!=0){
+                document.getElementById("b5").style.backgroundColor="red";
+                disp.innerHTML += '| 5 |';
+            }
+            else{
+                document.getElementById("b5").style.backgroundColor="green";
+                disp.innerHTML+= '| 5 removed |';
+            }
+        }
+        function bf6() {
+            bn[6]=bn[6]+1
+
+            if(bn[6]%2!=0){
+                document.getElementById("b6").style.backgroundColor="red";
+                disp.innerHTML += '| 6 |';
+            }
+            else{
+                document.getElementById("b6").style.backgroundColor="green";
+                disp.innerHTML+= '|6 removed |';
+            }
+        }
+        function bf7() {
+            bn[7]=bn[7]+1
+
+            if(bn[7]%2!=0){
+                document.getElementById("b7").style.backgroundColor="red";
+                disp.innerHTML += '| 7 |';
+            }
+            else{
+                document.getElementById("b7").style.backgroundColor="green";
+                disp.innerHTML+= '| 7 removed |';
+            }
+        }
+        function bf8() {
+            bn[8]=bn[8]+1
+
+            if(bn[8]%2!=0){
+                document.getElementById("b8").style.backgroundColor="red";
+                disp.innerHTML += '| 8 |';
+            }
+            else{
+                document.getElementById("b8").style.backgroundColor="green";
+                disp.innerHTML+= '| 8 removed |';
+            }
+        }
+        function bf9() {
+            bn[9]=bn[9]+1
+
+            if(bn[9]%2!=0){
+                document.getElementById("b9").style.backgroundColor="red";
+                disp.innerHTML += '| 9 |';
+            }
+            else{
+                document.getElementById("b9").style.backgroundColor="green";
+                disp.innerHTML+= '| 9 removed |';
+            }
+        }
+        function bf10() {
+            bn[10]=bn[10]+1
+
+            if(bn[10]%2!=0){
+                document.getElementById("b10").style.backgroundColor="red";
+                disp.innerHTML += '| 10 |';
+            }
+            else{
+                document.getElementById("b10").style.backgroundColor="green";
+                disp.innerHTML+= '| 10 removed |';
+            }
+        }
+        function bf11() {
+            bn[11]=bn[11]+1
+
+            if(bn[11]%2!=0){
+                document.getElementById("b11").style.backgroundColor="red";
+                disp.innerHTML += '| 11 |';
+            }
+            else{
+                document.getElementById("b11").style.backgroundColor="green";
+                disp.innerHTML+= '| 11removed |';
+            }
+        }
+        function bf12(){
+            bn[12]=bn[12]+1
+
+            if(bn[12]%2!=0){
+                document.getElementById("b12").style.backgroundColor="red";
+                disp.innerHTML += '| 12 |';
+            }
+            else{
+                document.getElementById("b12").style.backgroundColor="green";
+                disp.innerHTML+= '| 12 removed |';
+            }
+        }
+        function bf13() {
+            bn[13]=bn[13]+1
+
+            if(bn[13]%2!=0){
+                document.getElementById("b13").style.backgroundColor="red";
+                disp.innerHTML += '| 13 |';
+            }
+            else{
+                document.getElementById("b13").style.backgroundColor="green";
+                disp.innerHTML+= '| 13 removed |';
+            }
+        }
+        function bf14() {
+            bn[14]=bn[14]+1
+
+            if(bn[14]%2!=0){
+                document.getElementById("b14").style.backgroundColor="red";
+                disp.innerHTML += '| 14 |';
+            }
+            else{
+                document.getElementById("b14").style.backgroundColor="green";
+                disp.innerHTML+= '| 14 removed |';
+            }
+        }
+        function bf15() {
+            bn[15]=bn[15]+1
+
+            if(bn[15]%2!=0){
+                document.getElementById("b15").style.backgroundColor="red";
+                disp.innerHTML += '| 15 |';
+            }
+            else{
+                document.getElementById("b15").style.backgroundColor="green";
+                disp.innerHTML+= '| 15 removed |';
+            }
+        }
+        function bf16() {
+            bn[16]=bn[16]+1
+
+            if(bn[16]%2!=0){
+                document.getElementById("b16").style.backgroundColor="red";
+                disp.innerHTML += '| 16 |';
+            }
+            else{
+                document.getElementById("b16").style.backgroundColor="green";
+                disp.innerHTML+= '| 16 removed |';
+            }
+        }
+        function bf17() {
+            bn[17]=bn[17]+1
+
+            if(bn[17]%2!=0){
+                document.getElementById("b17").style.backgroundColor="red";
+                disp.innerHTML += '| 17 |';
+            }
+            else{
+                document.getElementById("b17").style.backgroundColor="green";
+                disp.innerHTML+= '| 17 removed |';
+            }
+        }
+        function bf18() {
+            bn[18]=bn[18]+1
+
+            if(bn[18]%2!=0){
+                document.getElementById("b18").style.backgroundColor="red";
+                disp.innerHTML += '| 18 |';
+            }
+            else{
+                document.getElementById("b18").style.backgroundColor="green";
+                disp.innerHTML+= '| 18 removed |';
+            }
+        }
+        function bf19() {
+            bn[19]=bn[19]+1
+
+            if(bn[19]%2!=0){
+                document.getElementById("b19").style.backgroundColor="red";
+                disp.innerHTML += '| 19 |';
+            }
+            else{
+                document.getElementById("b19").style.backgroundColor="green";
+                disp.innerHTML+= '| 19 removed |';
+            }
+        }
+        function bf20() {
+            bn[20]=bn[20]+1
+
+            if(bn[20]%2!=0){
+                document.getElementById("b20").style.backgroundColor="red";
+                disp.innerHTML += '| 20 |';
+            }
+            else{
+                document.getElementById("b20").style.backgroundColor="green";
+                disp.innerHTML+= '| 20 removed |';
+            }
+        }
+        function bf21() {
+            bn[21]=bn[21]+1
+
+            if(bn[21]%2!=0){
+                document.getElementById("b21").style.backgroundColor="red";
+                disp.innerHTML += '| 21 |';
+            }
+            else{
+                document.getElementById("b21").style.backgroundColor="green";
+                disp.innerHTML+= '| 21 removed |';
+            }
+        }
+        function bf22() {
+            bn[22]=bn[22]+1
+
+            if(bn[22]%2!=0){
+                document.getElementById("b22").style.backgroundColor="red";
+                disp.innerHTML += '| 22 |';
+            }
+            else{
+                document.getElementById("b22").style.backgroundColor="green";
+                disp.innerHTML+= '| 22 removed |';
+            }
+        }
+        function bf23() {
+            bn[23]=bn[23]+1
+
+            if(bn[23]%2!=0){
+                document.getElementById("b23").style.backgroundColor="red";
+                disp.innerHTML += '| 23 |';
+            }
+            else{
+                document.getElementById("b23").style.backgroundColor="green";
+                disp.innerHTML+= '| 23 removed |';
+            }
+        }
+        function bf24() {
+            bn[24]=bn[24]+1
+
+            if(bn[24]%2!=0){
+                document.getElementById("b24").style.backgroundColor="red";
+                disp.innerHTML += '| 24 |';
+            }
+            else{
+                document.getElementById("b24").style.backgroundColor="green";
+                disp.innerHTML+= '| 24 removed |';
+            }
+        }
+        function bf25() {
+            bn[25]=bn[25]+1
+
+            if(bn[25]%2!=0){
+                document.getElementById("b25").style.backgroundColor="red";
+                disp.innerHTML += '| 25 |';
+            }
+            else{
+                document.getElementById("b25").style.backgroundColor="green";
+                disp.innerHTML+= '| 25 removed |';
+            }
+        }
+        function bf26() {
+            bn[26]=bn[26]+1
+
+            if(bn[26]%2!=0){
+                document.getElementById("b26").style.backgroundColor="red";
+                disp.innerHTML += '| 26 |';
+            }
+            else{
+                document.getElementById("b26").style.backgroundColor="green";
+                disp.innerHTML+= '| 26 removed |';
+            }
+        }
+        function bf27() {
+            bn[27]=bn[27]+1
+
+            if(bn[27]%2!=0){
+                document.getElementById("b27").style.backgroundColor="red";
+                disp.innerHTML += '| 27 |';
+            }
+            else{
+                document.getElementById("b27").style.backgroundColor="green";
+                disp.innerHTML+= '| 27 removed |';
+            }
+        }
+        function bf28() {
+            bn[28]=bn[28]+1
+
+            if(bn[28]%2!=0){
+                document.getElementById("b28").style.backgroundColor="red";
+                disp.innerHTML += '| 28 |';
+            }
+            else{
+                document.getElementById("b28").style.backgroundColor="green";
+                disp.innerHTML+= '| 28 removed |';
+            }
+        }
+        function bf29() {
+            bn[29]=bn[29]+1
+
+            if(bn[29]%2!=0){
+                document.getElementById("b29").style.backgroundColor="red";
+                disp.innerHTML += '| 29 |';
+            }
+            else{
+                document.getElementById("b29").style.backgroundColor="green";
+                disp.innerHTML+= '| 29 removed |';
+            }
+        }
+        function bf30() {
+            bn[30]=bn[30]+1
+
+            if(bn[30]%2!=0){
+                document.getElementById("b30").style.backgroundColor="red";
+                disp.innerHTML += '| 30 |';
+            }
+            else{
+                document.getElementById("b30").style.backgroundColor="green";
+                disp.innerHTML+= '| 30 removed |';
+            }
+        }
+        function bf31() {
+            bn[31]=bn[31]+1
+
+            if(bn[31]%2!=0){
+                document.getElementById("b31").style.backgroundColor="red";
+                disp.innerHTML += '| 31 |';
+            }
+            else{
+                document.getElementById("b31").style.backgroundColor="green";
+                disp.innerHTML+= '| 31 removed |';
+            }
+        }
+        function bf32() {
+            bn[32]=bn[32]+1
+
+            if(bn[32]%2!=0){
+                document.getElementById("b32").style.backgroundColor="red";
+                disp.innerHTML += '| 32 |';
+            }
+            else{
+                document.getElementById("b32").style.backgroundColor="green";
+                disp.innerHTML+= '| 32 removed |';
+            }
+        }
+        function bf33() {
+            bn[33]=bn[33]+1
+
+            if(bn[33]%2!=0){
+                document.getElementById("b33").style.backgroundColor="red";
+                disp.innerHTML += '| 33 |';
+            }
+            else{
+                document.getElementById("b33").style.backgroundColor="green";
+                disp.innerHTML+= '| 33 removed |';
+            }
+        }
+        function bf34() {
+            bn[34]=bn[34]+1
+
+            if(bn[34]%2!=0){
+                document.getElementById("b34").style.backgroundColor="red";
+                disp.innerHTML += '| 34 |';
+            }
+            else{
+                document.getElementById("b34").style.backgroundColor="green";
+                disp.innerHTML+= '| 34 removed |';
+            }
+        }
+        function bf35() {
+            bn[35]=bn[35]+1
+
+            if(bn[35]%2!=0){
+                document.getElementById("b35").style.backgroundColor="red";
+                disp.innerHTML += '| 35 |';
+            }
+            else{
+                document.getElementById("b35").style.backgroundColor="green";
+                disp.innerHTML+= '| 35 removed |';
+            }
+        }
+        function bf36() {
+            bn[36]=bn[36]+1
+
+            if(bn[36]%2!=0){
+                document.getElementById("b36").style.backgroundColor="red";
+                disp.innerHTML += '| 36 |';
+            }
+            else{
+                document.getElementById("b36").style.backgroundColor="green";
+                disp.innerHTML+= '| 36 removed |';
+            }
+        }
+        function bf37() {
+            bn[37]=bn[37]+1
+
+            if(bn[37]%2!=0){
+                document.getElementById("b37").style.backgroundColor="red";
+                disp.innerHTML += '| 37 |';
+            }
+            else{
+                document.getElementById("b37").style.backgroundColor="green";
+                disp.innerHTML+= '| 37 removed |';
+            }
+        }
+        function bf38() {
+            bn[38]=bn[38]+1
+
+            if(bn[38]%2!=0){
+                document.getElementById("b38").style.backgroundColor="red";
+                disp.innerHTML += '| 38 |';
+            }
+            else{
+                document.getElementById("b38").style.backgroundColor="green";
+                disp.innerHTML+= '| 38 removed |';
+            }
+        }
+        function bf39() {
+            bn[39]=bn[39]+1
+
+            if(bn[39]%2!=0){
+                document.getElementById("b39").style.backgroundColor="red";
+                disp.innerHTML += '| 39 |';
+            }
+            else{
+                document.getElementById("b39").style.backgroundColor="green";
+                disp.innerHTML+= '| 39 removed |';
+            }
+        }
+        function bf40() {
+            bn[40]=bn[40]+1
+
+            if(bn[40]%2!=0){
+                document.getElementById("b40").style.backgroundColor="red";
+                disp.innerHTML += '| 40 |';
+            }
+            else{
+                document.getElementById("b40").style.backgroundColor="green";
+                disp.innerHTML+= '| 40 removed |';
+            }
+        }
+        function bf41() {
+            bn[41]=bn[41]+1
+
+            if(bn[41]%2!=0){
+                document.getElementById("b41").style.backgroundColor="red";
+                disp.innerHTML += '| 41 |';
+            }
+            else{
+                document.getElementById("b41").style.backgroundColor="green";
+                disp.innerHTML+= '| 41 removed |';
+            }
+        }
+        function bf42() {
+            bn[42]=bn[42]+1
+
+            if(bn[42]%2!=0){
+                document.getElementById("b42").style.backgroundColor="red";
+                disp.innerHTML += '| 42 |';
+            }
+            else{
+                document.getElementById("b42").style.backgroundColor="green";
+                disp.innerHTML+= '| 42 removed |';
+            }
+        }
+        function bf43() {
+            bn[43]=bn[43]+1
+
+            if(bn[43]%2!=0){
+                document.getElementById("b43").style.backgroundColor="red";
+                disp.innerHTML += '| 43 |';
+            }
+            else{
+                document.getElementById("b43").style.backgroundColor="green";
+                disp.innerHTML+= '| 43 removed |';
+            }
+        }
+        function bf44() {
+            bn[44]=bn[44]+1
+
+            if(bn[44]%2!=0){
+                document.getElementById("b44").style.backgroundColor="red";
+                disp.innerHTML += '| 44 |';
+            }
+            else{
+                document.getElementById("b44").style.backgroundColor="green";
+                disp.innerHTML+= '| 44 removed |';
+            }
+        }
+        function bf45() {
+            bn[45]=bn[45]+1
+
+            if(bn[45]%2!=0){
+                document.getElementById("b45").style.backgroundColor="red";
+                disp.innerHTML += '| 45 |';
+            }
+            else{
+                document.getElementById("b45").style.backgroundColor="green";
+                disp.innerHTML+= '| 45 removed |';
+            }
+        }
+        function bf46() {
+            bn[46]=bn[46]+1
+
+            if(bn[46]%2!=0){
+                document.getElementById("b46").style.backgroundColor="red";
+                disp.innerHTML += '| 46 |';
+            }
+            else{
+                document.getElementById("b46").style.backgroundColor="green";
+                disp.innerHTML+= '| 46 removed |';
+            }
+        }
+        function bf47() {
+            bn[47]=bn[47]+1
+
+            if(bn[47]%2!=0){
+                document.getElementById("b47").style.backgroundColor="red";
+                disp.innerHTML += '| 47 |';
+            }
+            else{
+                document.getElementById("b47").style.backgroundColor="green";
+                disp.innerHTML+= '| 47 removed |';
+            }
+        }
+        function bf48() {
+            bn[48]=bn[48]+1
+
+            if(bn[48]%2!=0){
+                document.getElementById("b48").style.backgroundColor="red";
+                disp.innerHTML += '| 48 |';
+            }
+            else{
+                document.getElementById("b48").style.backgroundColor="green";
+                disp.innerHTML+= '| 48 removed |';
+            }
+        }
+        function bf49() {
+            bn[49]=bn[49]+1
+
+            if(bn[49]%2!=0){
+                document.getElementById("b49").style.backgroundColor="red";
+                disp.innerHTML += '| 49 |';
+            }
+            else{
+                document.getElementById("b49").style.backgroundColor="green";
+                disp.innerHTML+= '| 49 removed |';
+            }
+        }
+        function bf50() {
+            bn[50]=bn[50]+1
+
+            if(bn[50]%2!=0){
+                document.getElementById("b50").style.backgroundColor="red";
+                disp.innerHTML += '| 50 |';
+            }
+            else{
+                document.getElementById("b50").style.backgroundColor="green";
+                disp.innerHTML+= '| 50 removed |';
+            }
+        }
+        function bf51() {
+            bn[51]=bn[51]+1
+
+            if(bn[51]%2!=0){
+                document.getElementById("b51").style.backgroundColor="red";
+                disp.innerHTML += '|51 |';
+            }
+            else{
+                document.getElementById("b51").style.backgroundColor="green";
+                disp.innerHTML+= '| 51 removed |';
+            }
+        }
+        function bf52() {
+            bn[52]=bn[52]+1
+
+            if(bn[52]%2!=0){
+                document.getElementById("b52").style.backgroundColor="red";
+                disp.innerHTML += '| 52 |';
+            }
+            else{
+                document.getElementById("b52").style.backgroundColor="green";
+                disp.innerHTML+= '| 52 removed |';
+            }
+        }
+        function bf53() {
+            bn[53]=bn[53]+1
+
+            if(bn[53]%2!=0){
+                document.getElementById("b53").style.backgroundColor="red";
+                disp.innerHTML += '| 53 |';
+            }
+            else{
+                document.getElementById("b53").style.backgroundColor="green";
+                disp.innerHTML+= '| 53 removed |';
+            }
+        }
+        function bf54() {
+            bn[54]=bn[54]+1
+
+            if(bn[54]%2!=0){
+                document.getElementById("b54").style.backgroundColor="red";
+                disp.innerHTML += '| 54 |';
+            }
+            else{
+                document.getElementById("b54").style.backgroundColor="green";
+                disp.innerHTML+= '| 54 removed |';
+            }
+        }
+        function bf55() {
+            bn[55]=bn[55]+1
+
+            if(bn[55]%2!=0){
+                document.getElementById("b55").style.backgroundColor="red";
+                disp.innerHTML += '| 55 |';
+            }
+            else{
+                document.getElementById("b55").style.backgroundColor="green";
+                disp.innerHTML+= '| 55 removed |';
+            }
+        }
+        function bf56() {
+            bn[56]=bn[56]+1
+
+            if(bn[56]%2!=0){
+                document.getElementById("b56").style.backgroundColor="red";
+                disp.innerHTML += '| 56 |';
+            }
+            else{
+                document.getElementById("b56").style.backgroundColor="green";
+                disp.innerHTML+= '| 56 removed |';
+            }
+        }
+        function bf57() {
+            bn[57]=bn[57]+1
+
+            if(bn[57]%2!=0){
+                document.getElementById("b57").style.backgroundColor="red";
+                disp.innerHTML += '| 57 |';
+            }
+            else{
+                document.getElementById("b57").style.backgroundColor="green";
+                disp.innerHTML+= '| 57 removed |';
+            }
+        }
+        function bf58() {
+            bn[58]=bn[58]+1
+
+            if(bn[58]%2!=0){
+                document.getElementById("b58").style.backgroundColor="red";
+                disp.innerHTML += '| 58 |';
+            }
+            else{
+                document.getElementById("b58").style.backgroundColor="green";
+                disp.innerHTML+= '| 58 removed |';
+            }
+        }
+        function bf60() {
+            bn[60]=bn[60]+1
+
+            if(bn[60]%2!=0){
+                document.getElementById("b60").style.backgroundColor="red";
+                disp.innerHTML += '| 60 |';
+            }
+            else{
+                document.getElementById("b60").style.backgroundColor="green";
+                disp.innerHTML+= '| 60 removed |';
+            }
+        }
+        function bf59() {
+            bn[59]=bn[59]+1
+
+            if(bn[59]%2!=0){
+                document.getElementById("b59").style.backgroundColor="red";
+                disp.innerHTML += '| 59 |';
+            }
+            else{
+                document.getElementById("b59").style.backgroundColor="green";
+                disp.innerHTML+= '| 59 removed |';
+            }
+        }
+        function bf61() {
+            bn[61]=bn[61]+1
+
+            if(bn[61]%2!=0){
+                document.getElementById("b61").style.backgroundColor="red";
+                disp.innerHTML += '| 61 |';
+            }
+            else{
+                document.getElementById("b61").style.backgroundColor="green";
+                disp.innerHTML+= '| 61 removed |';
+            }
+        }
+        function bf62() {
+            bn[62]=bn[62]+1
+
+            if(bn[62]%2!=0){
+                document.getElementById("b62").style.backgroundColor="red";
+                disp.innerHTML += '| 62 |';
+            }
+            else{
+                document.getElementById("b62").style.backgroundColor="green";
+                disp.innerHTML+= '| 62 removed |';
+            }
+        }
+        function bf63() {
+            bn[63]=bn[63]+1
+
+            if(bn[63]%2!=0){
+                document.getElementById("b63").style.backgroundColor="red";
+                disp.innerHTML += '| 63 |';
+            }
+            else{
+                document.getElementById("b63").style.backgroundColor="green";
+                disp.innerHTML+= '| 63 removed |';
+            }
+        }
+        function bf64() {
+            bn[64]=bn[64]+1
+
+            if(bn[64]%2!=0){
+                document.getElementById("b64").style.backgroundColor="red";
+                disp.innerHTML += '| 64 |';
+            }
+            else{
+                document.getElementById("b64").style.backgroundColor="green";
+                disp.innerHTML+= '| 64 removed |';
+            }
+        }
+        function bf65() {
+            bn[65]=bn[65]+1
+
+            if(bn[65]%2!=0){
+                document.getElementById("b65").style.backgroundColor="red";
+                disp.innerHTML += '| 65 |';
+            }
+            else{
+                document.getElementById("b65").style.backgroundColor="green";
+                disp.innerHTML+= '| 65 removed |';
+            }
+        }
+        function bf66() {
+            bn[66]=bn[66]+1
+
+            if(bn[66]%2!=0){
+                document.getElementById("b66").style.backgroundColor="red";
+                disp.innerHTML += '| 66 |';
+            }
+            else{
+                document.getElementById("b66").style.backgroundColor="green";
+                disp.innerHTML+= '| 66 removed |';
+            }
+        }
+        function bf67() {
+            bn[67]=bn[67]+1
+
+            if(bn[67]%2!=0){
+                document.getElementById("b67").style.backgroundColor="red";
+                disp.innerHTML += '| 67 |';
+            }
+            else{
+                document.getElementById("b67").style.backgroundColor="green";
+                disp.innerHTML+= '| 67 removed |';
+            }
+        }
+        function bf68() {
+            bn[68]=bn[68]+1
+
+            if(bn[68]%2!=0){
+                document.getElementById("b68").style.backgroundColor="red";
+                disp.innerHTML += '| 68 |';
+            }
+            else{
+                document.getElementById("b68").style.backgroundColor="green";
+                disp.innerHTML+= '| 68 removed |';
+            }
+        }
+        function bf69() {
+            bn[69]=bn[69]+1
+
+            if(bn[69]%2!=0){
+                document.getElementById("b69").style.backgroundColor="red";
+                disp.innerHTML += '| 69 |';
+            }
+            else{
+                document.getElementById("b69").style.backgroundColor="green";
+                disp.innerHTML+= '| 69 removed |';
+            }
+        }
+        function bf70() {
+            bn[70]=bn[70]+1
+
+            if(bn[70]%2!=0){
+                document.getElementById("b70").style.backgroundColor="red";
+                disp.innerHTML += '| 70 |';
+            }
+            else{
+                document.getElementById("b70").style.backgroundColor="green";
+                disp.innerHTML+= '| 70 removed |';
+            }
+        }
+        function bf71() {
+            bn[71]=bn[71]+1
+
+            if(bn[71]%2!=0){
+                document.getElementById("b71").style.backgroundColor="red";
+                disp.innerHTML += '| 71 |';
+            }
+            else{
+                document.getElementById("b71").style.backgroundColor="green";
+                disp.innerHTML+= '| 71 removed |';
+            }
+        }
+        function bf72() {
+            bn[72]=bn[72]+1
+
+            if(bn[72]%2!=0){
+                document.getElementById("b72").style.backgroundColor="red";
+                disp.innerHTML += '| 72 |';
+            }
+            else{
+                document.getElementById("b72").style.backgroundColor="green";
+                disp.innerHTML+= '| 72 removed |';
+            }
+        }
+        function bf73() {
+            bn[73]=bn[73]+1
+
+            if(bn[73]%2!=0){
+                document.getElementById("b73").style.backgroundColor="red";
+                disp.innerHTML += '| 73 |';
+            }
+            else{
+                document.getElementById("b73").style.backgroundColor="green";
+                disp.innerHTML+= '| 73 removed |';
+            }
+        }
+        function bf74() {
+            bn[74]=bn[74]+1
+
+            if(bn[74]%2!=0){
+                document.getElementById("b74").style.backgroundColor="red";
+                disp.innerHTML += '| 74 |';
+            }
+            else{
+                document.getElementById("b74").style.backgroundColor="green";
+                disp.innerHTML+= '| 74 removed |';
+            }
+        }
+        function bf75() {
+            bn[75]=bn[75]+1
+
+            if(bn[75]%2!=0){
+                document.getElementById("b75").style.backgroundColor="red";
+                disp.innerHTML += '| 75 |';
+            }
+            else{
+                document.getElementById("b75").style.backgroundColor="green";
+                disp.innerHTML+= '| 75 removed |';
+            }
+        }
+        
+        function saveData() {
+            const data = document.getElementById('display').value;
+            localStorage.setItem('user_data', data);
+            alert('Data saved!');
+        }
+
+      
+        
+        
+        function download(){
+           
+
+
+            
+            
+            
+            var blob = new Blob([disp.innerHTML],{type:'text/plain'});
+            var url=URL.createObjectURL(blob);
+            var a=document.createElement("a");
+            a.href=url;
+            
+            a.download="myfile.txt";
+        
+        
+            a.click();
+            
+            
+            
+            
+        }
+      
+
+        // Add more functions for other buttons here...
+       
+    </script>
+    
+</body>
+</html>
